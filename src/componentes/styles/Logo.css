@@ -1,0 +1,35 @@
+.conancos-logo-container  {
+    width: 90%;
+    height: content;
+    margin-bottom: 3.5rem;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+    border-radius: 12px;
+    box-shadow: 0 0 8px 2px crimson;
+    & img {
+      width: 100%;
+      border: 3px solid black;
+      border-radius: 10px;
+      padding: 2px;
+      background: crimson;
+    }
+    &:hover::after{
+        background: unset;
+    }
+}
+.conancos-logo-container::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    top: 0;
+    left: 0;
+    border: 1px solid red;
+    border-radius: 12px;
+    box-shadow: 0 0 8px 14px #171d28;
+    background: #171d28af;
+    filter: blur(10px);
+}

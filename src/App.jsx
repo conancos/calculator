@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { evaluate } from 'mathjs'
 import './App.css'
 import logo from '/logo-conancos.png'
+import Logo from './componentes/Logo.jsx'
 import Boton from './componentes/Boton.jsx'
 import Panel from './componentes/Panel.jsx'
 
@@ -113,6 +114,7 @@ function App() {
     }
   }  
 
+
   const handleMemo = () => {
     setMemo(input);
     setInput('0')
@@ -120,18 +122,12 @@ function App() {
     console.log("click memory")
   }
 
+
   return (
 
     <main className="App-calculator">
-
-      <div className="conancos-logo-container">
-        <img
-          src={logo}
-          className="conancos-logo"
-          alt="logo"
-        />
-      </div>
-
+      <Logo logo={logo} />
+      
       <div className="container">        
         <Panel memo={memo} memory={memory} input={input} />
 
@@ -139,22 +135,18 @@ function App() {
             <Boton id="clear" handleClick={handleClear} pad="AC"></Boton>
             <Boton id="divide" handleClick={handleClick} pad="/" >/</Boton>
             <Boton id="multiply" handleClick={handleClick} pad="*" ></Boton>
-
             <Boton id="seven" handleClick={handleClick} pad={7}></Boton>
             <Boton id="eight" handleClick={handleClick} pad={8}></Boton>
             <Boton id="nine" handleClick={handleClick} pad={9}></Boton>
             <Boton id="subtract" handleClick={handleClick} pad="-" >-</Boton>
-          
             <Boton id="four" handleClick={handleClick} pad={4}></Boton>
             <Boton id="five" handleClick={handleClick} pad={5}></Boton>
             <Boton id="six" handleClick={handleClick} pad={6}></Boton>
             <Boton id="add" handleClick={handleClick} pad="+">+</Boton>
-          
             <Boton id="one" handleClick={handleClick} pad={1}></Boton>
             <Boton id="two" handleClick={handleClick} pad={2}></Boton>
             <Boton id="three" handleClick={handleClick} pad={3}></Boton>
             <Boton id="equals" handleClick={handleResult} pad="=">=</Boton>
-          
             <Boton id="memo" handleClick={handleMemo} pad={"Memory"}></Boton>
             <Boton id="zero" handleClick={handleClick} pad={0} ></Boton>
             <Boton id="decimal" handleClick={handleClick} pad="." >.</Boton>
