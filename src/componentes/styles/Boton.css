@@ -1,0 +1,38 @@
+.boton-especial {
+    color: #ff9;
+    background: #254178dd;
+    border: 2px solid black;
+    &:hover {
+        background: black;
+        border: 2px solid #ff9;
+    }
+    &:active {
+        /* transform: scale(.999); */
+        box-shadow: inset 0 0 4px 2px #ff9 !important;
+    }
+}
+
+.boton-numeral {
+    /* color: #5afd; */
+    color: #fbd;
+    background: #000;
+    border: 2px solid #5afa;
+    &:hover {
+        color: #ff9;
+        background: #254178dd;
+        border: 2.5px solid #ff9;
+    }
+    &:active {
+        transform: scale(.99);
+        box-shadow: inset 0 0 6px 4px #000;
+    }
+}
+
+.button {
+    
+    border-radius: 4px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    /* transition: all .2s ease-in-out; */
+    
+}

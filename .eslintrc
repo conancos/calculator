@@ -1,0 +1,26 @@
+{
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react",
+      "react-hooks"
+    ],
+    "rules": {
+      "react/react-in-jsx-scope": "off", // En React 17+, esto ya no es necesario
+      "react/prop-types": "off", // Si usas TypeScript, puedes desactivar esto
+      "react/jsx-uses-react": "off",
+      "react/jsx-uses-vars": "error"
+    }
+}
