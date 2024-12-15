@@ -2,38 +2,51 @@ import { useState } from 'react'
 import { evaluate } from 'mathjs'
 import './App.css'
 import logo from '/logo-conancos.png'
-
 import Boton from './componentes/Boton.jsx'
-
+import Panel from './componentes/Panel.jsx'
 
 function App() {
   const [input, setInput] = useState('')
   const [memory, setMemory] = useState('')
+  const [memo, setMemo] = useState('')
   const [lastWasEquals, setLastWasEquals] = useState(false)
   const [lastResult, setLastResult] = useState('')
 
+  
   const handleClick = (event) => {
     
     // Evitar operadores iniciales:
     if ((event === '*' || event === '/') && (input === '' || input === '0')) return;
-    // Permitir "-" o "+" después de "*" o "/" para negativos:
-    if (['*', '/'].includes(input[input.length - 1]) && ['+', '-'].includes(event)) {
-      setInput(input + event);
-    };
-    // Evitar dos operadores consecutivos:
+    
+    // Manejar operadores consecutivos:
     if (['+', '-', '*', '/'].includes(event)) {
-      // Solo agregar el operador si el último carácter no es ya un operador
-      if (['+', '-', '*', '/'].includes(input[input.length - 1])) 
-        return; // No hacemos nada si ya hay un operador al final
-    };
+      const lastChar = input[input.length - 1];
+      const secondLastChar = input[input.length - 2];
 
+      // Permitir "-" o "+" después de "*" o "/" para negativos:
+      if (['*', '/'].includes(lastChar) && ['+', '-'].includes(event)) {
+        setInput(input + event);
+        return;
+      }
+
+      // Si el último carácter es un operador, reemplazarlo con el nuevo operador
+      if (['+', '-', '*', '/'].includes(lastChar)) {
+        if (lastChar === '-' && ['+', '*', '/'].includes(secondLastChar)) {
+          // Reemplazar los dos últimos caracteres si son "*-" o "/-"
+          setInput(input.slice(0, -2) + event);
+        } else {
+          // Reemplazar solo el último operador
+          setInput(input.slice(0, -1) + event);
+        }
+        return;
+      }
+    };
+      
     // Evitar múltiples puntos decimales en el mismo número
     if (event === '.') {
       // Dividimos el input en los números y operadores, y verificamos el último número
       const lastNumber = input.split(/[\+\-\*\/]/).pop(); // Último número antes de un operador
-      if (lastNumber.includes('.')) {
-        return;
-      }
+      if (lastNumber.includes('.')) return;
     };
   
     // Si el input es '0' o está vacío, reemplazamos el '0' con el primer número
@@ -58,8 +71,7 @@ function App() {
       return;
     };
 
-    // Empezar un nuevo cálculo después de '=' (Test 14):
-    // Agregar una nueva variable de estado para rastrear si laacción anterior fue '=':
+    // Empezar un nuevo cálculo después de '=':
     if (lastWasEquals) {
       if (['+', '-', '*', '/'].includes(event)) {
         // Si es un operador, continúa la operación con el resultado anterior
@@ -77,25 +89,11 @@ function App() {
         setInput(input + event);
       }
     }
-    
-    
   };
 
 
-  /* const evaluate = (expression) => {
-    return new Function('return ' + expression)();
-  }; */
-
   const handleResult = () => {
-    
-    
     if (input) {
-    /*   setInput(evaluate(input))
-      setMemory(input + ' = ' + evaluate(input))
-    } else {
-      alert("Ingresa un número")
-    }
-    setLastWasEquals(true); */
       let result = evaluate(input);
       let formattedResult = Number(result.toFixed(4)).toString();
       setInput(formattedResult);
@@ -107,17 +105,25 @@ function App() {
     }
   };
   
-  const handleMemory = () => {
-    setMemory(input);
-    console.log("click memory")
+
+  const handleClear = () => {
+    setInput('0');
+    if (input === '0') {
+      setMemory('0');
+    }
+  }  
+
+  const handleMemo = () => {
+    setMemo(input);
     setInput('0')
+    if (memo === '0') setMemo('');
+    console.log("click memory")
   }
-
-
 
   return (
 
     <main className="App-calculator">
+
       <div className="conancos-logo-container">
         <img
           src={logo}
@@ -126,23 +132,14 @@ function App() {
         />
       </div>
 
-      <div className="container">
-        
-        
-        <div className="panel">
-          
-          <input id="memory" className="little-panel" value={memory} disabled placeholder='M'/>
-          <input id="display" className="main-panel" value={input} onChange={(event) => setInput(event.target.value)} disabled placeholder='0'/>
-        
-        </div>
-
+      <div className="container">        
+        <Panel memo={memo} memory={memory} input={input} />
 
         <div className="teclado">
-          
-            <Boton id="clear" handleClick={() => setInput('0')} pad="AC"></Boton>
+            <Boton id="clear" handleClick={handleClear} pad="AC"></Boton>
             <Boton id="divide" handleClick={handleClick} pad="/" >/</Boton>
             <Boton id="multiply" handleClick={handleClick} pad="*" ></Boton>
-          
+
             <Boton id="seven" handleClick={handleClick} pad={7}></Boton>
             <Boton id="eight" handleClick={handleClick} pad={8}></Boton>
             <Boton id="nine" handleClick={handleClick} pad={9}></Boton>
@@ -158,14 +155,11 @@ function App() {
             <Boton id="three" handleClick={handleClick} pad={3}></Boton>
             <Boton id="equals" handleClick={handleResult} pad="=">=</Boton>
           
-            <Boton id="memo" handleClick={handleMemory} pad={"Memory"}></Boton>
+            <Boton id="memo" handleClick={handleMemo} pad={"Memory"}></Boton>
             <Boton id="zero" handleClick={handleClick} pad={0} ></Boton>
             <Boton id="decimal" handleClick={handleClick} pad="." >.</Boton>
-          
         </div>
       </div>
-      
-
     </main>
   )
 }
