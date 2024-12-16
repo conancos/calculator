@@ -1,8 +1,22 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@font-face {
+  font-family: 'Quantico';
+  src: url('./assets/fonts/Quantico-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Quantico Bold';
+  src: url('./assets/fonts/Quantico-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
 
+:root {
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  line-height: 1.5;
+  /* font-weight: 100; */
   /* color-scheme: light dark; */
   color: #fffd;
   background-color: #171d28;
@@ -23,7 +37,7 @@ body {
 }
 
 a {
-  font-weight: 500;
+  font-weight: 300;
   color: #646cff;
   text-decoration: inherit;
 }

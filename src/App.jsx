@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { evaluate } from 'mathjs'
 import './App.css'
-import logo from '/logo-conancos.png'
+import logo_dev from '/logo-conancos.png'
 import Logo from './componentes/Logo.jsx'
 import Boton from './componentes/Boton.jsx'
 import Panel from './componentes/Panel.jsx'
@@ -126,7 +126,7 @@ function App() {
   return (
 
     <main className="App-calculator">
-      <Logo logo={logo} />
+      <Logo logo={logo_dev} />
       
       <div className="container">        
         <Panel memo={memo} memory={memory} input={input} />

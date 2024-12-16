@@ -7,16 +7,9 @@
 }
 
 button {
-  /* width: 50px; */
-  /* height: 50px; */
   margin-block: .5rem;
   margin-inline: .25rem;
   user-select: none;
-  color: #000;
-  font-weight: 600;
-  font-size: 1.25rem;
-  border-radius: 4px;
-  border: 3.5px solid black;
   transition: all .1s ease-in-out;
 }
 
@@ -28,12 +21,12 @@ button {
   flex-direction: column;
   justify-content: start;
   position: relative;
-  
+
   /* conancos-container-logo inside component */
   
   .container {
-    width: 295px;
-    padding: .5rem;
+    width: 320px;
+    padding: .35rem .3rem;
     margin-top: 40%;
     border-radius: 6px;
     /* border: 4px solid gray; */
@@ -52,7 +45,7 @@ button {
         "four five six add"
         "one two three equals"
         "memo zero decimal equals";
-      height: 340px;
+      height: 360px;
            
       /* & .button inside component */
         
