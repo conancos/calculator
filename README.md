@@ -1,8 +1,13 @@
-# React + Vite
+# Calculadora
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Calculadora hecha con React y Math.js, comprende los 4 operadores aritméticos y un botón éxtra para la memoria.
 
-Currently, two official plugins are available:
+[![Logo CONAN_COS](/public/calculator.png)](https://conancos.dev/calculator)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+<br>
+
+
+
+[![Logo CONAN_COS](https://conancos.dev/calculator/logo-conancos.png)](https://conancos.dev/portfolio)
